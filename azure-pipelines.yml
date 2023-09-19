@@ -26,6 +26,9 @@ jobs:
     runOnce:
       deploy:
        steps:
+       - script:
+          sudo apt install python3-pip -y
+
        - script: |
           sudo apt-get install python -y
 
