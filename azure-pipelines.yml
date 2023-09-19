@@ -40,7 +40,6 @@ jobs:
        - script: |
           sudo pip install pytest pytest-azurepipelines
           sudo pytest 
-          displayName: 'pytest'
 
 
 # - task: UsePythonVersion@0
