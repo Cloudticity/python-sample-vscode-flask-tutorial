@@ -17,9 +17,9 @@ pool:
 
 jobs:
 - deployment: VMDeploy
-  displayName: Deploy to Test-Staging VM
+  displayName: Deploy to Test-Staging VM inside of environment test-app-deploy-linux-vm
   environment: 
-    name: test-staging
+    name: test-app-deploy-linux-vm
     resourceType: virtualMachine
     resourceName: test-staging # only deploy to the VM resource named USHAN-PC
   strategy:
