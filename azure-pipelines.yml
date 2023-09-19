@@ -28,9 +28,11 @@ jobs:
        steps:
        - script:
           sudo apt install python3-pip -y
+         displayName: 'Install python3-pip'
 
        - script: |
           sudo apt-get install python -y
+         displayName: "install python"
 
       #  - script: |
       #     sudo python -m pip install --upgrade pip
@@ -39,7 +41,8 @@ jobs:
 
        - script: |
           sudo pip install pytest pytest-azurepipelines
-          sudo pytest 
+          sudo pytest
+         displayName: 'install pytest'
 
 
 # - task: UsePythonVersion@0
