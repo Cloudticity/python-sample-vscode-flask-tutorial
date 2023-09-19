@@ -21,11 +21,16 @@ jobs:
   environment: 
     name: test-app-deploy-linux-vm
     resourceType: virtualMachine
-    resourceName: test-staging # only deploy to the VM resource named USHAN-PC
+    resourceName: test-staging # only deploy to the VM resource named test-staging
   strategy:
     runOnce:
       deploy:
        steps:
+       - script: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          displayName: 'Install dependencies'
+          
        - script: |
           pip install pytest pytest-azurepipelines
           pytest 
