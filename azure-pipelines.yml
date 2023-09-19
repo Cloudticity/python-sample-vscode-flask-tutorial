@@ -8,25 +8,41 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
-strategy:
+  strategy:
   matrix:
     Python37:
       python.version: '3.7'
     Python39:
       python.version: '3.9.18'
 
-steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '$(python.version)'
-  displayName: 'Use Python $(python.version)'
+jobs:
+- deployment: VMDeploy
+  displayName: Deploy to Test-Staging VM
+  environment: 
+    name: test-staging
+    resourceType: virtualMachine
+    resourceName: test-staging # only deploy to the VM resource named USHAN-PC
+  strategy:
+    runOnce:
+      deploy:
+       steps:
+       - script: |
+          pip install pytest pytest-azurepipelines
+          pytest 
+          displayName: 'pytest'
 
-- script: |
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
-  displayName: 'Install dependencies'
 
-- script: |
-    pip install pytest pytest-azurepipelines
-    pytest
-  displayName: 'pytest'
+# - task: UsePythonVersion@0
+#   inputs:
+#     versionSpec: '$(python.version)'
+#   displayName: 'Use Python $(python.version)'
+
+# - script: |
+#     python -m pip install --upgrade pip
+#     pip install -r requirements.txt
+#   displayName: 'Install dependencies'
+
+# - script: |
+#     pip install pytest pytest-azurepipelines
+#     pytest
+#   displayName: 'pytest'
