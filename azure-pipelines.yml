@@ -40,7 +40,7 @@ jobs:
       #     displayName: 'Install dependencies'
 
        - script: |
-          sudo pip install pytest pytest-azurepipelines
+          sudo pip install pytest==7.0.1 pytest-azurepipelines pyspark
           sudo pytest
          displayName: 'install pytest'
 
